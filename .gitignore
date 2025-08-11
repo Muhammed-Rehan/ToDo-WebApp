@@ -1,0 +1,61 @@
+# -----------------------------
+# Node.js / Express Server
+# -----------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.env
+.env.local
+.env.*.local
+
+# -----------------------------
+# React Client (Vite or CRA)
+# -----------------------------
+client/node_modules/
+client/build/
+client/dist/
+client/package-lock.json
+client/.env
+client/.env.local
+client/.env.*.local
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs
+*.log
+logs/*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# -----------------------------
+# OS generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# IDE / Editor folders
+# -----------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# -----------------------------
+# PostgreSQL dumps / backups
+# -----------------------------
+*.sql
+*.dump
+
+# -----------------------------
+# Misc
+# -----------------------------
+tmp/
+.cache/
