@@ -1,68 +1,120 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f6f9fc, #e0eafc);
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
+  padding: 40px 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* App Container */
+.App {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
 }
 
-button {
+/* Input Section */
+.InputFeild {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.InputFeild input {
+  flex: 1;
+  padding: 10px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.InputFeild input:focus {
+  outline: none;
+  border-color: #4cafef;
+}
+
+.Add {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4cafef;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Add:hover {
+  background-color: #3b9bd6;
+}
+
+/* Task List */
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taskItemContainer {
+  display: flex;
+  align-items: center;
+  background: #f7f9fc;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.taskItemContainer:hover {
+  background-color: #eef3f9;
+}
+
+/* Buttons in Tasks */
+.Check button,
+.Delete button {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Check button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.Check button:hover {
+  background-color: #3f9142;
+}
+
+.Delete button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.Delete button:hover {
+  background-color: #c0392b;
+}
+
+/* Task Text */
+.taskItem {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+  word-break: break-word;
 }

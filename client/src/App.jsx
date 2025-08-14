@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -11,16 +9,38 @@ function App() {
     console.log("Updated taskList:", taskList);
   }, [taskList]);
 
+  useEffect(() => {
+    fetch('http://localhost:5000/')
+      .then(response => response.json())
+      .then(data => {
+        setTaskList(data.map(task => ({ text: task.task, completed: task.completed })));
+      })
+      .catch(error => console.error('Error fetching tasks:', error));
+  }, [])
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleTaskAdd = () => {
+  const handleTaskAdd = async () => {
     if (inputValue.trim() === '') {
       alert('Please enter a task');
       return;
     }
-    setTaskList(prev => [{ text: inputValue, completed: false }, ...prev]);
+    const newTask = { text: inputValue, completed: false };
+    try{
+      const response = await fetch(`http://localhost:5000/addTask?task=${encodeURIComponent(inputValue)}`, {
+        method: 'GET',
+      })
+      console.log("Response from server:", response);
+      const data = await response.json();
+      setTaskList(prev => [...prev, newTask]);
+      console.log("Updated taskList after adding:", data);
+    }
+    catch (error) {
+      console.error('Error adding task:', error);
+      return;
+    }
     setInputValue("");
   };
 
@@ -33,7 +53,18 @@ function App() {
   };
 
   const handleDeleteTask = (index) => {
-    setTaskList(prev => prev.filter((_, i) => i !== index));
+    try{
+      const response = fetch("http://localhost:5000/deleteTask?id=" + index, {
+        method: 'GET',
+      });
+      console.log("Response from server:", response);
+      setTaskList(prev => prev.filter((_,i) => i !==  index));
+      console.log("Updated taskList after deletion:", taskList);
+    }
+    catch (error) {
+      console.error('Error deleting task:', error);
+      return;
+    }
   };
 
   return (
@@ -64,7 +95,7 @@ function App() {
         ))}
       </div>
     </div>
-  );
+  );  
 }
 
 export default App;
